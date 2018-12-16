@@ -1,7 +1,10 @@
 package com.ock.au.component.tcp;
 
+import org.springframework.validation.ObjectError;
+
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Message implements Serializable {
@@ -33,6 +36,18 @@ public class Message implements Serializable {
         this();
         this.headers = headers;
         this.payload = payload;
+    }
+
+    public void setMessage(String message) {
+        headers.put("message", new Header("message", message));
+    }
+
+    public void setStatus(String status) {
+        headers.put("status", new Header("status", status));
+    }
+
+    public void setErrors(List<ObjectError> errors) {
+        headers.put("errors", new Header("errors", errors));
     }
 
     public Map<String, Header> getHeaders() {

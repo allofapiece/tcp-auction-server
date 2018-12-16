@@ -59,6 +59,7 @@ public class ActionDispatcher extends MvcComponent {
                 receiveMessage.getPayload().put("data", receiveObject);
             }
         } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
             throw new NotFoundRouteException("Cannot resolve action");
         }
 

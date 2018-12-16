@@ -1,16 +1,17 @@
 package com.ock.au;
 
+import com.ock.au.entity.Bet;
 import com.ock.au.entity.Lot;
+import com.ock.au.entity.Role;
+import com.ock.au.entity.User;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -47,7 +48,7 @@ public class PersistenceConfig {
         props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(Lot.class);
+        factoryBean.setAnnotatedClasses(Lot.class, User.class, Role.class, Bet.class);
         return factoryBean;
     }
 
